@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8" />
+<title>fileUpload page</title>
+<script type="text/javascript" src="/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	function onclickTest() {
+		alert("点击按钮！");
+	}
+
+	/* 	$(function() {
+	 window.alert("好好学习，天天向上！");
+	 }); */
+
+	function uploadFileClick() {
+		var fileUploadForm = document.getElementById('fileUploadForm');
+		var formData = {};
+		formData = new FormData(fileUploadForm);
+		jQuery.ajax({
+			type : 'post',
+			url : "http://localhost:8080/fileUpload",
+			data : formData,
+			contentType : false,
+			processData : false,
+			async : false,
+			dataType : "json",
+			success : function(data) {
+				console.log(data);
+			},
+			error : function() {
+				alert("文件上传发生异常");
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<input type="button" onclick="onclickTest()" value="点击一下试试">
+	<h1 th:inlines="text">文件上传</h1>
+	<form action="fileUpload" id="fileUploadForm" method="post" enctype="multipart/form-data">
+		<input type="file" id="fileName" name="fileName" /> 
+		<input type="button" id="" value="上传文件" onclick="uploadFileClick()">
+	</form>
+	<div></div>
+</body>
+</html>

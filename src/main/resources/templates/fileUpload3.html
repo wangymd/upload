@@ -11,22 +11,20 @@
 		alert("点击按钮！");
 	}
 
-	/* 	$(function() {
-	 window.alert("好好学习，天天向上！");
-	 }); */
+/* 	$(function() {
+		window.alert("好好学习，天天向上！");
+	}); */
 
 	function uploadFileClick() {
-		var fileUploadForm = document.getElementById('fileUploadForm');
-		var formData = {};
-		formData = new FormData(fileUploadForm);
+		var file = document.getElementById('fileName');
+		var files = file.files;
 		jQuery.ajax({
 			type : 'post',
 			url : "http://localhost:8080/fileUpload",
-			data : formData,
-			contentType : false,
-			//contentType : "multipart/form-data;charset=utf-8",
+			data : {"fileName":files[0]},
+			contentType : "multipart/form-data;",
 			processData : false,
-			async : false,
+			async:false,
 			dataType : "json",
 			success : function(data) {
 				console.log(data);
@@ -39,10 +37,9 @@
 </script>
 </head>
 <body>
-	<h1 th:inlines="text">文件上传</h1>
-	<form action="fileUpload" id="fileUploadForm" method="post" enctype="multipart/form-data">
-		<input type="file" id="fileName" name="fileName" /> 
+	<div>
+		<input type="file" id="fileName" name="fileName"> 
 		<input type="button" id="" value="上传文件" onclick="uploadFileClick()">
-	</form>
+	</div>
 </body>
 </html>

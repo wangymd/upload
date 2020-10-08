@@ -26,6 +26,11 @@ import com.alibaba.fastjson.JSONObject;
 public class FileUploadController {
     private final static Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 
+    @RequestMapping("/")
+    public String index() {
+        return "/index";
+    }
+    
     /**
      http://ip:port/file
     */
@@ -33,6 +38,12 @@ public class FileUploadController {
     public String file() {
         logger.info("单文件上传页面");
         return "/fileUpload";
+    }
+    
+    @RequestMapping("/file1")
+    public String file1() {
+        logger.info("单文件上传页面");
+        return "/fileUpload1";
     }
     
     /**
@@ -43,6 +54,15 @@ public class FileUploadController {
        logger.info("单文件上传页面");
        return "/fileUpload2";
    }
+   
+   /**
+   http://ip:port/file
+  */
+  @RequestMapping("/file3")
+  public String file3() {
+      logger.info("单文件上传页面");
+      return "/fileUpload3";
+  }
 
     /**
      http://ip:port/multifile
